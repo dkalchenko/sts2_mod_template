@@ -21,7 +21,7 @@ Before you begin, ensure you have:
 
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/lamali292/sts2_example_mod.git
+git clone https://github.com/dkalchenko/sts2_mod_template
 cd sts2_example_mod
 ```
 
@@ -42,14 +42,29 @@ cp local.props.example local.props
 Open `local.props` in any text editor and update with **your** paths:
 ```xml
 <Project>
-  <PropertyGroup>
-    <!-- Example for default Steam installation: -->
-    <STS2GamePath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</STS2GamePath>
-    
-    <!-- Example Godot path: -->
-    <GodotExePath>C:\Godot\Godot_v4.5.1-stable_mono_win64.exe</GodotExePath>
-  </PropertyGroup>
+    <PropertyGroup>
+        <!-- Example for default Steam installation: -->
+        <STS2GamePath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</STS2GamePath>
+
+        <!-- Example Godot path: -->
+        <GodotExePath>C:\Godot\Godot_v4.5.1-stable_mono_win64.exe</GodotExePath>
+    </PropertyGroup>
 </Project>
+```
+---
+
+#### 4. Edit manifest data in `ExampleMod.csproj` (Optional)
+
+Open `ExampleMod.csproj` in any text editor and update with requred data:
+```xml
+<!-- ↓ MOD METADATA - Change these! -->
+<ModName>ExampleMod</ModName>
+<ModDisplayName>Example Mod</ModDisplayName>
+<ModAuthor>Anonim</ModAuthor>
+<ModVersion>1.0.0</ModVersion>
+<HasPack>true</HasPack>
+<HasDll>true</HasDll>
+<AffectsGameplay>true</AffectsGameplay>
 ```
 ---
 
@@ -92,3 +107,5 @@ can be changed in ExampleMod.csproj
 - Restart Slay the Spire 2
 
 ---
+Credits:
+- [Origin repository](https://github.com/lamali292/sts2_example_mod)
