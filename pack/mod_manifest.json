@@ -1,6 +1,11 @@
 ﻿{
-  "pck_name": "ExampleMod",
-  "name": "Example Mod",
-  "author": "lamali",
-  "version": "1.0.0"
+"id": "ExampleMod",
+"name": "Example Mod",
+"author": "Anonim",
+"description": "",
+"version": "1.0.0",
+"has_pck": true,
+"has_dll": true,
+"dependencies": [],
+"affects_gameplay": true
 }
