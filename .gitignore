@@ -1,3 +1,6 @@
+# Editor
+.idea
+
 # User-specific build configuration
 local.props
 
@@ -16,3 +19,4 @@ local.props
 
 
 .vs
+

@@ -7,12 +7,15 @@
 		<PlatformTarget>x64</PlatformTarget>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		
+
 		<!-- ↓ MOD METADATA - Change these! -->
 		<ModName>ExampleMod</ModName>
 		<ModDisplayName>Example Mod</ModDisplayName>
 		<ModAuthor>lamali</ModAuthor>
 		<ModVersion>1.0.0</ModVersion>
+		<HasPack>true</HasPack>
+		<HasDll>true</HasDll>
+		<AffectsGameplay>true</AffectsGameplay>
 		
 		<AssemblyName>$(ModName)</AssemblyName>
 		<Version>$(ModVersion)</Version>
@@ -57,19 +60,25 @@ project/assembly_name="$(ModName)"
 		<WriteLinesToFile File="$(ProjectGodotPath)" Lines="$(ProjectGodotContent)" Overwrite="true" Encoding="UTF-8" />
 		<Message Text="Generated project.godot" Importance="high" />
 	</Target>
-	
-	<!-- Generate mod_manifest.json before build -->
+
 	<Target Name="GenerateModManifest" BeforeTargets="BeforeBuild">
 		<PropertyGroup>
 			<ModManifestPath>$(PackProject)\mod_manifest.json</ModManifestPath>
-			<ModManifestContent>{
-  "pck_name": "$(ModName)",
-  "name": "$(ModDisplayName)",
-  "author": "$(ModAuthor)",
-  "version": "$(ModVersion)"
-}</ModManifestContent>
+			<ModManifestContent>
+{
+"id": "$(ModName)",
+"name": "$(ModDisplayName)",
+"author": "$(ModAuthor)",
+"description": "",
+"version": "$(ModVersion)",
+"has_pck": $(HasPack),
+"has_dll": $(HasDll),
+"dependencies": [],
+"affects_gameplay": $(AffectsGameplay)
+}
+			</ModManifestContent>
 		</PropertyGroup>
-		
+
 		<WriteLinesToFile File="$(ModManifestPath)" Lines="$(ModManifestContent)" Overwrite="true" Encoding="UTF-8" />
 		<Message Text="Generated mod_manifest.json" Importance="high" />
 	</Target>
@@ -77,6 +86,7 @@ project/assembly_name="$(ModName)"
 	<Target Name="PostBuild" AfterTargets="Build">
 		<MakeDir Directories="$(ModsOutputDir)" />
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsOutputDir)" />
+		<Copy SourceFiles="$(PackProject)\mod_manifest.json" DestinationFolder="$(ModsOutputDir)" />
 		<Exec Command="&quot;$(GodotExePath)&quot; --headless --path &quot;$(PackProject)&quot; --export-pack &quot;Windows Desktop&quot; &quot;$(ModsOutputDir)\$(ModName).pck&quot;" />
 	</Target>
 </Project>
